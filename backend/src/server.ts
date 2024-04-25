@@ -15,8 +15,8 @@ app.use(express.json());
 
 app.post("/tasks", async(req, res) => {
     try {
-        const { description } = req.body;
-        const newTask = await dbPool.query("INSERT INTO task (description) VALUES($1) RETURNING *", [description]);
+        const { content } = req.body;
+        const newTask = await dbPool.query("INSERT INTO task (content) VALUES($1) RETURNING *", [content]);
         res.json(newTask.rows[0]);
     } catch (err){
         if(err instanceof Error){
