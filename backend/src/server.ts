@@ -1,5 +1,4 @@
-import {request, response} from "express";
-
+import {Task} from "./types/Task";
 const express = require("express");
 const cors = require("cors");
 const dbPool = require("../src/db.ts");
@@ -15,8 +14,11 @@ app.use(express.json());
 
 app.post("/tasks", async(req, res) => {
     try {
-        const { content } = req.body;
-        const newTask = await dbPool.query("INSERT INTO task (content) VALUES($1) RETURNING *", [content]);
+        const task: Task = req.body;
+        console.log(task)
+        const newTask = await dbPool.query("INSERT INTO task (name, content, start_date, end_date, tags, status) " +
+            "VALUES($1, $2, $3, $4, $5, $6) RETURNING *",
+                [task.name, task.content, task.startDate, task.endDate, task.tags, task.status]);
         res.json(newTask.rows[0]);
     } catch (err){
         if(err instanceof Error){
