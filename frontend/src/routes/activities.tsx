@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
-import { ListTasks } from "../components/tasks/ListTasks.tsx";
-import InputTask from "../components/tasks/InputTask.tsx";
+import ListActivity from "../components/activities/ListActivity.tsx";
+import InputActivity from "../components/activities/InputActivity.tsx";
 
-export default function Tasks() {
+export default function Activities() {
     return (
         <>
             <div className="antialiased text-center mx-auto w-11/12 max-h-screen h-auto">
@@ -12,11 +12,11 @@ export default function Tasks() {
                             Go to Root Page
                         </button>
                     </Link>
-                    <h1 className="text-3xl font-bold text-gray-800 mb-4 mt-4">TASKS</h1>
+                    <h1 className="text-3xl font-bold text-gray-800 mb-4 mt-4">ACTIVITIES</h1>
                     <div className="w-1/2 mx-auto mb-8">
-                        <InputTask />
+                        <InputActivity />
                     </div>
-                    <ListTasks />
+                    <ListActivity />
 
                 </div>
             </div>

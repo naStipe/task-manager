@@ -1,9 +1,9 @@
-import {Task} from "../types/Task.ts";
+import {Activity} from "../types/Activity.ts";
 
-const API_URL = "http://localhost:5000/tasks/"
-export async function createTask(task: Task | undefined){
+const API_URL = "http://localhost:5000/activities/"
+export async function createActivity(activity: Activity | undefined){
     try {
-        const body = task;
+        const body = activity;
         const response = await fetch(API_URL, {
             method: "POST",
             headers: {"Content-Type": "application/json"},
@@ -11,7 +11,7 @@ export async function createTask(task: Task | undefined){
         })
         console.log(JSON.stringify(body));
         console.log(response);
-        window.location.href = "/tasks";
+        window.location.href = "/activities";
     } catch (err){
         if(err instanceof Error){
             console.error(err.message);
@@ -19,10 +19,10 @@ export async function createTask(task: Task | undefined){
     }
 }
 
-export async function updateTask(task: Task){
+export async function updateActivity(activity: Activity){
     try {
-        const body = task;
-        console.log(task.id)
+        const body = activity;
+        console.log(activity.id)
         const response = await fetch(API_URL + body.id, {
             method: "PUT",
             headers: {"Content-Type": "application/json"},
@@ -30,7 +30,7 @@ export async function updateTask(task: Task){
         })
         console.log(JSON.stringify(body));
         console.log(response);
-        window.location.href = "/tasks";
+        window.location.href = "/activities";
     } catch (err){
         if(err instanceof Error){
             console.error(err.message);
@@ -38,9 +38,9 @@ export async function updateTask(task: Task){
     }
 }
 
-export async function getTasks() {
+export async function getActivities() {
     try{
-        const response = await fetch("http://localhost:5000/tasks");
+        const response = await fetch("http://localhost:5000/activities/");
         const jsonData = response.json();
         return jsonData;
     } catch (err){
@@ -52,16 +52,17 @@ export async function getTasks() {
     }
 }
 
-export async function deleteTask(task:Task){
+export async function deleteActivity(activity: Activity){
     try{
-        const body = task;
+        const body = activity;
+        console.log(body);
         const response = await fetch(API_URL + body.id, {
             method: "DELETE",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(body)
         })
         console.log(response);
-        window.location.href = "/tasks";
+        window.location.href = "/activities";
     } catch (err){
         if(err instanceof Error) {
             console.log(err.message);

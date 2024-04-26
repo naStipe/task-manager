@@ -1,33 +1,32 @@
 import {useState} from "react";
-import {Task} from "../../types/Task.ts";
-import {createTask} from "../../api/TaskAPI.ts";
-function InputTask(){
-    const [task, setTask] = useState<Task>();
+import {Activity} from "../../types/Activity.ts";
+import {createActivity} from "../../api/ActivityAPI.ts";
+
+export default function InputActivity(){
+    const [activity, setActivity] = useState<Activity>();
 
     const onSubmitForm = async (e: any) => {
         e.preventDefault()
 
-        console.log(task?.name);
-        console.log(task?.content);
-        console.log(task);
-        await createTask(task);
+        console.log(activity?.name);
+        console.log(activity?.content);
+        console.log(activity);
+        await createActivity(activity);
     }
 
     return(
         <>
             <form onSubmit={onSubmitForm} className="w-4/5 mx-auto">
                 <label htmlFor="create"
-                       className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Create new Task</label>
+                       className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Create new Activity</label>
                 <div className="relative">
                     <input type="text" id="create"
                            className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                           placeholder="New task"
-                           value={task?.content}
+                           placeholder="New activity"
+                           value={activity?.content}
                            onChange={(e) => {
-                               const date = new Date()
-                               const startDate = `${date.getDay()}/${date.getMonth()}/${date.getFullYear()}`;
-                               let newTask: Task = {name: "New Task", content: e.target.value, startDate: startDate, isDone: false};
-                               setTask(newTask);
+                               let newActivity: Activity = {name: "New Activity", content: e.target.value, isDone: false};
+                               setActivity(newActivity);
                            }}
                            required/>
                     <button type="submit"
@@ -38,5 +37,3 @@ function InputTask(){
         </>
     );
 }
-
-export default InputTask

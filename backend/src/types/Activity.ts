@@ -1,8 +1,9 @@
+
 export interface Activity{
-    id: number,
+    id?: number,
     name: string,
-    description: string,
-    status: string,
-    tags: string[],
-    activityType: string
+    content: string,
+    isDone: boolean,
+    tags?: string[],
+    activityType?: string
 }
