@@ -17,9 +17,9 @@ app.post("/tasks", async(req, res) => {
     try {
         const task: Task = req.body;
         console.log(task)
-        const newTask = await dbPool.query("INSERT INTO task (name, content, start_date, end_date, tags, status) " +
+        const newTask = await dbPool.query("INSERT INTO task (name, content, start_date, end_date, tags, is_done) " +
             "VALUES($1, $2, $3, $4, $5, $6) RETURNING *",
-                [task.name, task.content, task.startDate, task.endDate, task.tags, task.status]);
+                [task.name, task.content, task.startDate, task.endDate, task.tags, task.isDone]);
         res.json(newTask.rows[0]);
     } catch (err){
         if(err instanceof Error){
@@ -68,7 +68,7 @@ app.put("/tasks/:id", async (req, res) => {
     try {
         const task: Task = req.body;
         const updateTask = await dbPool.query("UPDATE task SET name = $2, content = $3, start_date = $4, end_date = $5, " +
-            "tags = $6, status = $7 WHERE task_id = $1", [task.id, task.name, task.content, task.startDate, task.endDate, task.tags, task.status]);
+            "tags = $6, is_done = $7 WHERE task_id = $1", [task.id, task.name, task.content, task.startDate, task.endDate, task.tags, task.isDone]);
         res.json("Task was updated!");
     } catch (err){
         if(err instanceof Error){

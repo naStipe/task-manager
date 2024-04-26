@@ -50,9 +50,9 @@ export const EditTask: React.FC<EditTaskProps> = ({ task, onClose, onUpdate }) =
                            className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500"/>
                     <div className="flex items-center">
                         <label className="text-gray-700">Done</label>
-                        <input type="checkbox" name="Status" checked={updatedTask.status} onChange={(event) => {
-                            const newStatus = event.target.checked;
-                            setUpdatedTask(prevTask => ({ ...prevTask, status: newStatus }));
+                        <input type="checkbox" name="Status" checked={updatedTask.isDone} onChange={(event) => {
+                            const newIsDone = event.target.checked;
+                            setUpdatedTask(prevTask => ({ ...prevTask, isDone: newIsDone }));
                         }}
                                className="ml-2 form-checkbox h-5 w-5 text-indigo-600"/>
                     </div>

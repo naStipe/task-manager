@@ -21,7 +21,7 @@ export function ListTasks() {
         startDate: item["start_date"],
         endDate: item["end_date"],
         tags: item["tags"],
-        status: item["status"] == "true"
+        isDone: item["is_done"] == "true"
     }));
 
     const getTasksFromApi = async () => {
@@ -76,7 +76,7 @@ export function ListTasks() {
                         <div key={item.id} className="task-item flex items-center bg-slate-100 border-b border-gray-200 py-4 w-11/12 mx-auto my-3">
                             <input
                                 type="checkbox"
-                                checked={item.status}
+                                checked={item.isDone}
                                 onChange={() => {
                                     let newTask: Task = {
                                         id: item.id,
@@ -85,14 +85,14 @@ export function ListTasks() {
                                         startDate: item.startDate,
                                         endDate: item.endDate,
                                         tags: item.tags,
-                                        status: !item.status
+                                        isDone: !item.isDone
                                     }
-
+                                    if(newTask.isDone){}
                                     updateTask(newTask)}}
                                 className="form-checkbox h-6 w-6 text-indigo-600 border-gray-300 rounded-md shadow-sm m-2"
                             />
                             <div className="flex-1">
-                                <h3 className={`text-lg font-medium text-gray-800 ${item.status ? 'line-through' : ''}`}>{item.name} - {item.id}</h3>
+                                <h3 className={`text-lg font-medium text-gray-800 ${item.isDone ? 'line-through' : ''}`}>{item.name} - {item.id}</h3>
                                 <p className="text-sm text-gray-600">{item.content} ({item.startDate})</p>
                             </div>
                             <div>

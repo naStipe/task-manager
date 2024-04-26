@@ -26,7 +26,7 @@ function InputTask(){
                            onChange={(e) => {
                                const date = new Date()
                                const dateFormat = `${date.getDay()}/${date.getMonth()}/${date.getFullYear()}`;
-                               let newTask: Task = {name: "New Task", content: e.target.value, startDate: dateFormat, status: false};
+                               let newTask: Task = {name: "New Task", content: e.target.value, startDate: dateFormat, isDone: false};
                                setTask(newTask);
                            }}
                            required/>
