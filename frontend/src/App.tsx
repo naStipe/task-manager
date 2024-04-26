@@ -1,21 +1,29 @@
 import './App.css'
-import InputTask from "./components/InputTask.tsx";
-import {ListTasks} from "./components/ListTasks.tsx";
+import React from "react"
+
+import {createBrowserRouter, createRoutesFromElements, Route, RouterProvider} from "react-router-dom";
+import Root from "./routes/root.tsx";
+import Tasks from "./routes/tasks.tsx";
 
 function App() {
 
+    const router = createBrowserRouter(
+        createRoutesFromElements(
+            <Route>
+                <Route path="/" element={<Root/>}/>
+                <Route path="/tasks" element={<Tasks/>}/>
+            </Route>
+
+
+
+
+        )
+    )
+
   return (
-    <>
-        <div className="antialiased text-center mx-auto w-11/12 h-screen pt-5">
-            <div className=" h-screen left-0 border-gray-800 border-2 m-5">
-                <h1 className="m-2 text-gray-800 font-mono font-medium">TASKS</h1>
-                <div className="max-w-screen-md mx-auto">
-                    <InputTask/>
-                </div>
-                <ListTasks />
-            </div>
-        </div>
-    </>
+    <React.StrictMode>
+        <RouterProvider router={router} />
+    </React.StrictMode>
   )
 }
 

@@ -15,7 +15,6 @@ function InputTask(){
 
     return(
         <>
-            <h1 className="m-2 text-gray-800 font-mono font-medium">CREATE A NEW TASK</h1>
             <form onSubmit={onSubmitForm}>
                 <label htmlFor="create"
                        className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Create new Task</label>
@@ -25,7 +24,9 @@ function InputTask(){
                            placeholder="New task"
                            value={task?.content}
                            onChange={(e) => {
-                               let newTask: Task = {name: "New Task", content: e.target.value, status: false};
+                               const date = new Date()
+                               const dateFormat = `${date.getDay()}/${date.getMonth()}/${date.getFullYear()}`;
+                               let newTask: Task = {name: "New Task", content: e.target.value, startDate: dateFormat, status: false};
                                setTask(newTask);
                            }}
                            required/>

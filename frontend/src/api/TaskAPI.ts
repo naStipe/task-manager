@@ -11,7 +11,7 @@ export async function createTasks(task: Task | undefined){
         })
         console.log(JSON.stringify(body));
         console.log(response);
-        window.location.href = "/";
+        window.location.href = "/tasks";
     } catch (err){
         if(err instanceof Error){
             console.error(err.message);
@@ -30,7 +30,7 @@ export async function updateTask(task: Task){
         })
         console.log(JSON.stringify(body));
         console.log(response);
-        window.location.href = "/";
+        window.location.href = "/tasks";
     } catch (err){
         if(err instanceof Error){
             console.error(err.message);
@@ -38,16 +38,35 @@ export async function updateTask(task: Task){
     }
 }
 
-// export async function getTasks() {
-//     try{
-//         const response = await fetch("http://localhost:5000/tasks");
-//         const jsonData = response.json();
-//         return jsonData;
-//     } catch (err){
-//         if(err instanceof Error){
-//             console.error(err.message);
-//         } else {
-//             console.log("No valid error!");
-//         }
-//     }
-// }
+export async function getTasks() {
+    try{
+        const response = await fetch("http://localhost:5000/tasks");
+        const jsonData = response.json();
+        return jsonData;
+    } catch (err){
+        if(err instanceof Error){
+            console.error(err.message);
+        } else {
+            console.log("No valid error!");
+        }
+    }
+}
+
+export async function deleteTask(task:Task){
+    try{
+        const body = task;
+        const response = await fetch(API_URL + body.id, {
+            method: "DELETE",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(body)
+        })
+        console.log(response);
+        window.location.href = "/tasks";
+    } catch (err){
+        if(err instanceof Error) {
+            console.log(err.message);
+        } else {
+            console.log("No valid error!");
+        }
+    }
+}

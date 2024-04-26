@@ -1,4 +1,5 @@
 import {Task} from "./types/Task";
+import {commonjs} from "globals";
 const express = require("express");
 const cors = require("cors");
 const dbPool = require("../src/db.ts");
@@ -82,7 +83,7 @@ app.put("/tasks/:id", async (req, res) => {
 
 app.delete("/tasks/:id", async (req, res) => {
     try {
-        const {id} = req.params;
+        const id = req.params.id;
         const deleteTask = await dbPool.query("DELETE FROM task WHERE task_id = $1", [id]);
         res.json("Task was deleted!")
     } catch (err){
