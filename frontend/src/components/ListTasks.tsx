@@ -3,22 +3,20 @@ import {ViewportList} from "react-viewport-list";
 import "../index.css"
 import {updateTask} from "../api/TaskAPI.ts";
 import {Task} from "../types/Task.ts";
-import {unstable_batchedUpdates} from "react-dom";
 
 export function ListTasks() {
 
     const [tasks, setTasks] = useState([]);
     const ref = useRef(null);
-
     const items = tasks.map((item, index) => ({
-        id: index,
+        id: item["task_id"],
         taskId: item["task_id"],
         name: item["name"],
         content: item["content"],
         startDate: item["startDate"],
         endDate: item["endDate"],
         tags: item["tags"],
-        status: item["status"]
+        status: item["status"] == "true"
     }));
 
     const getTasks = async () => {
@@ -39,6 +37,7 @@ export function ListTasks() {
         getTasks();
     }, []);
 
+    console.log(tasks)
 
     return (
         <>
@@ -64,11 +63,12 @@ export function ListTasks() {
                                         tags: item.tags,
                                         status: !item.status
                                     }
+                                    console.log(newTask.id)
                                     updateTask(newTask)}}
                                 className="form-checkbox h-6 w-6 text-indigo-600 border-gray-300 rounded-md shadow-sm m-2"
                             />
                             <div className="flex-1">
-                                <h3 className="text-lg font-medium text-gray-800">{item.name}</h3>
+                                <h3 className="text-lg font-medium text-gray-800">{item.name} - {item.id} - {item.taskId}</h3>
                                 <p className="text-sm text-gray-600">{item.content}</p>
                             </div>
                             <div>

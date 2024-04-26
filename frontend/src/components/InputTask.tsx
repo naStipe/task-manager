@@ -1,7 +1,7 @@
 import {useState} from "react";
 import {Task} from "../types/Task.ts";
 import {createTasks} from "../api/TaskAPI.ts";
-function InputTask(tasks){
+function InputTask(){
     const [task, setTask] = useState<Task>();
 
     const onSubmitForm = async (e: any) => {

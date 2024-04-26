@@ -33,7 +33,7 @@ app.post("/tasks", async(req, res) => {
 
 app.get("/tasks", async (req, res) => {
     try {
-        const allTasks = await dbPool.query("SELECT * FROM task");
+        const allTasks = await dbPool.query("SELECT * FROM task ORDER BY task_id");
         res.json(allTasks.rows);
     } catch (err){
         if(err instanceof Error){
