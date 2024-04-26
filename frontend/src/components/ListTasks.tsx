@@ -3,6 +3,7 @@ import {ViewportList} from "react-viewport-list";
 import "../index.css"
 import {updateTask} from "../api/TaskAPI.ts";
 import {Task} from "../types/Task.ts";
+import {unstable_batchedUpdates} from "react-dom";
 
 export function ListTasks() {
 
@@ -11,6 +12,7 @@ export function ListTasks() {
 
     const items = tasks.map((item, index) => ({
         id: index,
+        taskId: item["task_id"],
         name: item["name"],
         content: item["content"],
         startDate: item["startDate"],
@@ -37,6 +39,7 @@ export function ListTasks() {
         getTasks();
     }, []);
 
+
     return (
         <>
             <div className="scroll-container overflow-auto max-h-full mt-2" ref={ref}>
@@ -49,10 +52,11 @@ export function ListTasks() {
                         <div key={item.id} className="task-item flex items-center bg-slate-100 border-b border-gray-200 py-4 w-11/12 mx-auto my-3">
                             <input
                                 type="checkbox"
-                                checked={item.status == true}
+                                checked={item.status}
                                 onChange={() => {
+                                    console.log(typeof item.status)
                                     let newTask: Task = {
-                                        id: item.id,
+                                        id: item.taskId,
                                         name: item.name,
                                         content: item.content,
                                         startDate: item.startDate,
@@ -60,8 +64,6 @@ export function ListTasks() {
                                         tags: item.tags,
                                         status: !item.status
                                     }
-                                    newTask.status = !newTask.status;
-                                    console.log(newTask.status);
                                     updateTask(newTask)}}
                                 className="form-checkbox h-6 w-6 text-indigo-600 border-gray-300 rounded-md shadow-sm m-2"
                             />

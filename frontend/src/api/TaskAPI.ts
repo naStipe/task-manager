@@ -20,17 +20,17 @@ export async function createTasks(task: Task | undefined){
 }
 
 export async function updateTask(task: Task){
-
     try {
         const body = task;
-        const response = await fetch(API_URL + task.id, {
+        console.log(task.id)
+        const response = await fetch(API_URL + body.id, {
             method: "PUT",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(body)
         })
         console.log(JSON.stringify(body));
         console.log(response);
-        //window.location.href = "/";
+        window.location.href = "/";
     } catch (err){
         if(err instanceof Error){
             console.error(err.message);
