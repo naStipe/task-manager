@@ -1,7 +1,7 @@
 import {useState} from "react";
 import {Task} from "../types/Task.ts";
 import {createTasks} from "../api/TaskAPI.ts";
-function InputTask(){
+function InputTask(tasks){
     const [task, setTask] = useState<Task>();
 
     const onSubmitForm = async (e: any) => {
@@ -25,7 +25,7 @@ function InputTask(){
                            placeholder="New task"
                            value={task?.content}
                            onChange={(e) => {
-                               let newTask: Task = {name: "New Task", content: e.target.value};
+                               let newTask: Task = {name: "New Task", content: e.target.value, status: false};
                                setTask(newTask);
                            }}
                            required/>

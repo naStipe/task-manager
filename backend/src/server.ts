@@ -48,7 +48,7 @@ app.get("/tasks", async (req, res) => {
 
 app.get("/tasks/:id", async (req, res) => {
     try {
-        const { id } = req.params;
+        const {id} = req.params;
         const task = await dbPool.query("SELECT * FROM task WHERE task_id = $1", [id]);
         res.json(task.rows);
     } catch (err){
@@ -63,10 +63,11 @@ app.get("/tasks/:id", async (req, res) => {
 // update a task
 
 app.put("/tasks/:id", async (req, res) => {
+    console.log("In api")
     try {
-        const {id} = req.params;
-        const {description} = req.body;
-        const updateTask = await dbPool.query("UPDATE task SET description = $1 WHERE task_id = $2", [description, id]);
+        const task: Task = req.body;
+        const updateTask = await dbPool.query("UPDATE task SET name = $2, content = $3, start_date = $4, end_date = $5, " +
+            "tags = $6, status = $7 WHERE task_id = $1", [task.id, task.name, task.content, task.startDate, task.endDate, task.tags, task.status]);
         res.json("Task was updated!");
     } catch (err){
         if(err instanceof Error){

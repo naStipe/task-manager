@@ -5,5 +5,5 @@ export interface Task{
     startDate?:string,
     endDate?:string,
     tags?: string[],
-    status?: string
+    status?: boolean
 }
