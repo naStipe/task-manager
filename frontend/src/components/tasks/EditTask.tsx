@@ -1,7 +1,7 @@
 // TaskUpdateOverlay.tsx
 import React from 'react';
-import { Task } from '../types/Task.ts';
-import {updateTask} from "../api/TaskAPI.ts";
+import { Task } from '../../types/Task.ts';
+import {updateTask} from "../../api/TaskAPI.ts";
 
 interface EditTaskProps {
     task: Task;
@@ -27,21 +27,33 @@ export const EditTask: React.FC<EditTaskProps> = ({ task, onClose, onUpdate }) =
     return (
         <div className="fixed inset-0 flex items-center justify-center z-50">
             <div className="bg-white p-6 rounded shadow-lg w-full max-w-md">
-                <h2 className="text-2xl font-bold mb-4">Update Task</h2>
+                <h2 className="text-2xl font-bold mb-4">Edit Task</h2>
                 <form onSubmit={handleSubmit} className="space-y-4">
-                    <input type="text" name="name" value={updatedTask.name} onChange={handleChange}
+                    <label htmlFor="name" className="block text-sm font-medium text-gray-700">Task Name</label>
+                    <input type="text" name="name" id="name" value={updatedTask.name} onChange={handleChange}
                            placeholder="Task Name"
                            className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500"/>
-                    <input type="text" name="content" value={updatedTask.content} onChange={handleChange}
+
+                    <label htmlFor="content" className="block text-sm font-medium text-gray-700">Content</label>
+                    <input type="text" name="content" id="content" value={updatedTask.content} onChange={handleChange}
                            placeholder="Content"
                            className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500"/>
-                    <input type="text" name="startDate" value={updatedTask.startDate} onChange={handleChange}
+
+                    <label htmlFor="startDate" className="block text-sm font-medium text-gray-700">Start Date
+                        (DD/MM/YYYY)</label>
+                    <input type="text" name="startDate" id="startDate" value={updatedTask.startDate}
+                           onChange={handleChange}
                            placeholder="Start (DD/MM/YYYY)"
                            className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500"/>
-                    <input type="text" name="endDate" value={updatedTask.endDate} onChange={handleChange}
+
+                    <label htmlFor="endDate" className="block text-sm font-medium text-gray-700">End Date
+                        (DD/MM/YYYY)</label>
+                    <input type="text" name="endDate" id="endDate" value={updatedTask.endDate} onChange={handleChange}
                            placeholder="End (DD/MM/YYYY)"
                            className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500"/>
-                    <input type="text" name="tags" value={updatedTask.tags} onChange={(event) => {
+
+                    <label htmlFor="tags" className="block text-sm font-medium text-gray-700">Tags</label>
+                    <input type="text" name="tags" id="tags" value={updatedTask.tags} onChange={(event) => {
                         const tagsArray = event.target.value.replace(/#/g, '').split(/[\s,]+/);
                         console.log(tagsArray);
                         setUpdatedTask(prevTask => ({ ...prevTask, tags: tagsArray}))
@@ -58,12 +70,12 @@ export const EditTask: React.FC<EditTaskProps> = ({ task, onClose, onUpdate }) =
                     </div>
                     <div className="flex justify-end">
                         <button type="submit"
-                                className="bg-indigo-500 text-white px-4 py-2 rounded hover:bg-indigo-600">Update
+                                className="bg-indigo-500 text-white px-4 py-2 rounded hover:bg-indigo-600">Save
                         </button>
                     </div>
                 </form>
                 <div className="flex justify-end mt-4">
-                    <button onClick={onClose} className="text-gray-500 hover:text-gray-700">Close</button>
+                    <button onClick={onClose} className="text-gray-500 hover:text-gray-700">Cancel</button>
                 </div>
             </div>
         </div>

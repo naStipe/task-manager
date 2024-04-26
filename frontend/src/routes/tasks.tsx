@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import { ListTasks } from "../components/ListTasks.tsx";
-import InputTask from "../components/InputTask.tsx";
+import { ListTasks } from "../components/tasks/ListTasks.tsx";
+import InputTask from "../components/tasks/InputTask.tsx";
 
 export default function Tasks() {
     return (

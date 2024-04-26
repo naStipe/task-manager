@@ -1,8 +1,8 @@
 import {useEffect, useRef, useState} from "react";
 import {ViewportList} from "react-viewport-list";
-import "../index.css"
-import {deleteTask, getTasks, updateTask} from "../api/TaskAPI.ts";
-import {Task} from "../types/Task.ts";
+import "../../index.css"
+import {deleteTask, getTasks, updateTask} from "../../api/TaskAPI.ts";
+import {Task} from "../../types/Task.ts";
 import {EditTask} from "./EditTask.tsx";
 import ReactDOM from "react-dom";
 
@@ -87,13 +87,19 @@ export function ListTasks() {
                                         tags: item.tags,
                                         isDone: !item.isDone
                                     }
-                                    if(newTask.isDone){}
+                                    if(newTask.isDone){
+                                        const date = new Date();
+                                        const endDate = `${date.getDay()}/${date.getMonth()}/${date.getFullYear()}`;
+                                        newTask.endDate = endDate;
+                                    } else {
+                                        newTask.endDate = undefined
+                                    }
                                     updateTask(newTask)}}
                                 className="form-checkbox h-6 w-6 text-indigo-600 border-gray-300 rounded-md shadow-sm m-2"
                             />
                             <div className="flex-1">
                                 <h3 className={`text-lg font-medium text-gray-800 ${item.isDone ? 'line-through' : ''}`}>{item.name} - {item.id}</h3>
-                                <p className="text-sm text-gray-600">{item.content} ({item.startDate})</p>
+                                <p className="text-sm text-gray-600">{item.content} ({item.startDate} {item.endDate ? " - " + item.endDate : ""})</p>
                             </div>
                             <div>
                                 <button onClick={() => {

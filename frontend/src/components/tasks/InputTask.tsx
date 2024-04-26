@@ -1,6 +1,6 @@
 import {useState} from "react";
-import {Task} from "../types/Task.ts";
-import {createTasks} from "../api/TaskAPI.ts";
+import {Task} from "../../types/Task.ts";
+import {createTasks} from "../../api/TaskAPI.ts";
 function InputTask(){
     const [task, setTask] = useState<Task>();
 
@@ -25,8 +25,8 @@ function InputTask(){
                            value={task?.content}
                            onChange={(e) => {
                                const date = new Date()
-                               const dateFormat = `${date.getDay()}/${date.getMonth()}/${date.getFullYear()}`;
-                               let newTask: Task = {name: "New Task", content: e.target.value, startDate: dateFormat, isDone: false};
+                               const startDate = `${date.getDay()}/${date.getMonth()}/${date.getFullYear()}`;
+                               let newTask: Task = {name: "New Task", content: e.target.value, startDate: startDate, isDone: false};
                                setTask(newTask);
                            }}
                            required/>
