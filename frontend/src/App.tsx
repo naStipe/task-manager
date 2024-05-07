@@ -8,7 +8,6 @@ import Activities from "./routes/activities.tsx";
 import Dashboard from "./routes/dashboard.tsx";
 
 function App() {
-
     const router = createBrowserRouter(
         createRoutesFromElements(
             <Route>
@@ -17,9 +16,6 @@ function App() {
                 <Route path="/activities" element={<Activities />} />
                 <Route path="/dashboard" element={<Dashboard />} />
             </Route>
-
-
-
 
         )
     )
