@@ -54,6 +54,7 @@ export async function getTasks() {
 
 export async function deleteTask(task:Task){
     try{
+        console.log('In delete api');
         const body = task;
         const response = await fetch(API_URL + body.id, {
             method: "DELETE",
