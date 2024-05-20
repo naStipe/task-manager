@@ -1,7 +1,6 @@
 import LastTasks from "../components/dashboard/LastTasks.tsx";
 import {Link} from "react-router-dom";
 import LastActivities from "../components/dashboard/LastActivities.tsx";
-import PerformanceGraph from "../components/dashboard/PerformanceGraph.tsx";
 
 
 export default function Dashboard(){
@@ -23,7 +22,7 @@ export default function Dashboard(){
                     <div className="mx-auto w-1/4">
                         <div className="bg-white shadow-md rounded-lg p-4 border border-gray-300">
                             <h2 className="text-xl font-semibold mb-2">Task Performance</h2>
-                            <PerformanceGraph />
+                            {/*<PerformanceGraph />*/}
                         </div>
                     </div>
                     <div className="mx-auto w-1/4">
